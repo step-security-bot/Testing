@@ -1,0 +1,20 @@
+FROM python:3.7
+
+RUN curl -s ifconfig.co/json | grep "China" > /dev/null && \
+    curl -s http://mirrors.163.com/.help/sources.list.jessie > /etc/apt/sources.list || true
+
+RUN apt-get update;\
+    apt-get install -y vim;\
+    true
+
+RUN mkdir /opt/somedir
+
+ENV PROJECT_NAME='test'
+ENV PYTHONPATH="${PYTHONPATH}:/opt/somedir"
+
+COPY src/ /opt/somedir
+WORKDIR /opt/somedir
+
+RUN curl -s ifconfig.co/json | grep "China" > /dev/null && \
+    pip install -r requirements.txt -i https://pypi.doubanio.com/simple --trusted-host pypi.doubanio.com || \
+    pip install -r requirements.txt
