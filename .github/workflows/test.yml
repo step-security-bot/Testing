@@ -12,6 +12,9 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+      
+      - name: Print logs
+        run: echo ${{ toJson(steps.checkout-repo1.outputs) }}
 
       - name: Checkout
         id: checkout-repo2
@@ -21,6 +24,9 @@ jobs:
           path: secure-workflows
           ref: main
           fetch-depth: 0
+
+      - name: Print logs
+        run: echo ${{ toJson(steps.checkout-repo2.outputs) }}
 
       - name: Print sha
         run: echo "${{ github.sha }}${{steps.checkout-repo2.outputs.ref }}"
