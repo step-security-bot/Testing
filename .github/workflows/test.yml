@@ -25,4 +25,4 @@ jobs:
         run: echo "${{ github.sha }}${{steps.checkout-repo2.outputs.sha }}"
       
       - name: Print log
-        run: echo "${{steps.checkout-repo2.outputs}}"
+        run: echo ${{toJson(steps.checkout-repo2.outputs)}}
