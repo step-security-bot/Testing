@@ -29,7 +29,7 @@ jobs:
 
       - name: Print sha
         run: echo $commit
-        with:
+        env:
           commit: ${{ github.sha }} + ${SHA} 
 
       # - name: Print logs
