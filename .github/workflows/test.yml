@@ -30,7 +30,7 @@ jobs:
       - name: Print sha
         run: echo $commit
         env:
-          commit: ${SHA} 
+          commit: ${{SHA}} 
 
       # - name: Print logs
       #   run: echo ${{ toJson(steps.checkout-repo2.outputs) }}
