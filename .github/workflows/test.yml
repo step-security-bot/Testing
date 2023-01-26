@@ -8,18 +8,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        id: Checkout-repo1
+        id: checkout-repo1
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
       - name: Checkout
-        id: Checkout-repo2
+        id: checkout-repo2
         uses: actions/checkout@v2
         with:
           repository: step-security/secure-workflows
           path: secure-workflows
+          fetch-depth: 0
 
-      - run: echo "${{ github.sha }}${{steps.Checkout-repo2.outputs.sha }}"
-      - run: echo "${{steps.Checkout-repo1.outputs.sha }}"
-      - run: echo "${{steps.Checkout-repo2.outputs.sha }}"
+      - run: echo "${{ github.sha }}${{steps.checkout-repo2.outputs.sha }}"
+      - run: echo "${{steps.checkout-repo1.outputs.sha }}"
+      - run: echo "${{steps.checkout-repo2.outputs.sha }}"
