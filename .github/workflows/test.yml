@@ -19,4 +19,4 @@ jobs:
           repository: step-security/secure-workflows
           path: secure-workflows
 
-      - run: echo "${{ github.sha }}+${{ steps.sha.outputs.sha }}"
+      - run: echo "${{ github.sha }}+${GITHUB_SHA}"
