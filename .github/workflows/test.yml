@@ -21,14 +21,14 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - name: Get latest commit
+      - name: Fetch latest commit SHA
         id: latest-commit
-        uses: jakejarvis/get-latest-commit@v1
-        with:
-          repository: step-security/secure-workflows
+        run: |
+          sha=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/step-security/secure-workflows/commits | jq -r '.[0].sha')
+          echo "::set-output name=sha::$sha"
 
       - name: Print sha
-        run: echo "${{ github.sha }}${{steps.latest-commit.outputs.sha }}"
+        run: echo "${{ github.sha }}${{ steps.latest-commit.outputs.sha }}"
 
       # - name: Print logs
       #   run: echo ${{ toJson(steps.checkout-repo2.outputs) }}
