@@ -25,12 +25,10 @@ jobs:
         id: latest-commit
         run: |
           sha=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/step-security/secure-workflows/commits | jq -r '.[0].sha')
-          echo "SHA=$sha" >> $GITHUB_ENV
+          echo "SHA=${{ github.sha }}$sha" >> $GITHUB_ENV
 
       - name: Print sha
-        run: echo $commit
-        env:
-          commit: ${{ github.sha }} + $SHA 
+        run: echo $SHA  
 
       # - name: Print logs
       #   run: echo ${{ toJson(steps.checkout-repo2.outputs) }}
