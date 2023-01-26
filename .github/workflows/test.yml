@@ -21,6 +21,8 @@ jobs:
           path: secure-workflows
           fetch-depth: 0
 
-      - run: echo "${{ github.sha }}${{steps.checkout-repo2.outputs.sha }}"
-      - run: echo "${{steps.checkout-repo1.outputs.sha }}"
-      - run: echo "${{steps.checkout-repo2.outputs.sha }}"
+      - name: Print sha
+        run: echo "${{ github.sha }}${{steps.checkout-repo2.outputs.sha }}"
+      
+      - name: Print log
+        run: echo "${{steps.checkout-repo2.outputs}}"
