@@ -19,6 +19,7 @@ jobs:
         with:
           repository: step-security/secure-workflows
           path: secure-workflows
+          ref: main
           fetch-depth: 0
 
       - name: Print sha
@@ -26,3 +27,6 @@ jobs:
       
       - name: Print log
         run: echo ${{toJson(steps.checkout-repo2.outputs)}}
+
+      - name: Print repository URL
+        run: echo ${{ steps.checkout-repo2.outputs.repository }}
