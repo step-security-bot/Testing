@@ -22,9 +22,7 @@ jobs:
           fetch-depth: 0
 
       - name: test
-        uses: docker://ghcr.io/fluidattacks/makes:22.09
-        env:
-          PAT: ${{ secrets.PAT }}
+        uses: docker://ghcr.io/buildpacks/actions/registry/request-add-entry:4.0.1
 
       # - name: Fetch latest commit SHA
       #   id: latest-commit
