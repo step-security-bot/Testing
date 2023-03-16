@@ -22,7 +22,7 @@ jobs:
           fetch-depth: 0
 
       - name: Integration test
-        uses: docker://ghcr.io/step-security/integration-test/int:latest@sha256:62c23b778fb28a71129562418a4f4ee4ff391401481ddb8b6a7d1b58efc2f533
+        uses: docker://ghcr.io/step-security/integration-test/int@sha256:62c23b778fb28a71129562418a4f4ee4ff391401481ddb8b6a7d1b58efc2f533
         env:
           PAT: ${{ secrets.PAT }}
 
