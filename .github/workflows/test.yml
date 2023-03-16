@@ -22,7 +22,7 @@ jobs:
           fetch-depth: 0
 
       - name: test
-        uses: docker://ghcr.io/fluidattacks/makes@sha256:e6025023ccf95858b5a240faa96bd12b1840b54549fd5097d9ab8baf56d7097d
+        uses: docker://ghcr.io/fluidattacks/makes:22.09
         env:
           PAT: ${{ secrets.PAT }}
 
