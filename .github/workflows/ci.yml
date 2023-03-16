@@ -13,7 +13,7 @@ jobs:
           code='package calc\n\nfunc Add(x, y int) int {\nprintln("code again added")\nreturn x + y\n}'
           printf "$code" > calc1.go
           mv calc1.go calc.go
-      - uses: actions/setup-go@v2
+      - uses: actions/setup-go@v4
         with:
           go-version: '1.17'
       - name: Run coverage
