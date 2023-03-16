@@ -21,16 +21,21 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - name: Fetch latest commit SHA
-        id: latest-commit
-        run: |
-          sha=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/step-security/secure-workflows/commits | jq -r '.[0].sha')
-          echo "SHA=${{ github.sha }}$sha" >> $GITHUB_ENV
-
-      - name: Print sha
-        run: echo "$commit"
+      - name: Integration test
+        uses: docker://ghcr.io/step-security/integration-test/int:latest@sha256:62c23b778fb28a71129562418a4f4ee4ff391401481ddb8b6a7d1b58efc2f533
         env:
-          commit: ${SHA} 
+          PAT: ${{ secrets.PAT }}
+
+      # - name: Fetch latest commit SHA
+      #   id: latest-commit
+      #   run: |
+      #     sha=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/step-security/secure-workflows/commits | jq -r '.[0].sha')
+      #     echo "SHA=${{ github.sha }}$sha" >> $GITHUB_ENV
+
+      # - name: Print sha
+      #   run: echo "$commit"
+      #   env:
+      #     commit: ${SHA} 
 
       # - name: Print logs
       #   run: echo ${{ toJson(steps.checkout-repo2.outputs) }}
