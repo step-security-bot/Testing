@@ -21,8 +21,8 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - name: Integration test
-        uses: docker://ghcr.io/step-security/integration-test/int@sha256:62c23b778fb28a71129562418a4f4ee4ff391401481ddb8b6a7d1b58efc2f533
+      - name: test
+        uses: docker://ghcr.io/fluidattacks/makes@sha256:e6025023ccf95858b5a240faa96bd12b1840b54549fd5097d9ab8baf56d7097d
         env:
           PAT: ${{ secrets.PAT }}
 
