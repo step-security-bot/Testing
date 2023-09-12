@@ -3,26 +3,34 @@ name: Test checkout
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   Test:
     runs-on: ubuntu-latest
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@8ca2b8b2ece13480cda6dacd3511b49857a23c09 # v2.5.1
+        with:
+          egress-policy: audit
+
       - name: Checkout
         id: checkout-repo1
-        uses: actions/checkout@v3
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
         with:
           fetch-depth: 0
       
       - name: Checkout
         id: checkout-repo2
-        uses: actions/checkout@v3
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
         with:
           repository: step-security/secure-workflows
           ref: main
           fetch-depth: 0
 
       - name: test
-        uses: docker://ghcr.io/buildpacks/actions/registry/request-add-entry:4.0.1
+        uses: docker://ghcr.io/buildpacks/actions/registry/request-add-entry:4.0.1@sha256:71df0770db246ee853235f016e97a0afa5adeceb0bd13ca73a87158df3adcb9b
 
       # - name: Fetch latest commit SHA
       #   id: latest-commit
