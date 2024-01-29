@@ -7,6 +7,11 @@ jobs:
   Test:
     runs-on: ubuntu-latest
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@eb238b55efaa70779f274895e782ed17c84f2895 # v2.6.1
+        with:
+          egress-policy: audit
+
       - name: Checkout
         id: checkout-repo1
         uses: actions/checkout@v3
@@ -23,7 +28,7 @@ jobs:
 
       - name: Test gitleak
         run: echo "AKIAIMNOJVGFDXXXE4OA"
-        
+
       # - name: test
       #   uses: docker://ghcr.io/buildpacks/actions/registry/request-add-entry:4.0.1
 
