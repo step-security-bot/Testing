@@ -21,11 +21,11 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - name: test
-        uses: docker://ghcr.io/buildpacks/actions/registry/request-add-entry:4.0.1
-
       - name: Test gitleak
         run: echo "AKIAIMNOJVGFDXXXE4OA"
+        
+      # - name: test
+      #   uses: docker://ghcr.io/buildpacks/actions/registry/request-add-entry:4.0.1
 
       # - name: Fetch latest commit SHA
       #   id: latest-commit
