@@ -11,11 +11,7 @@ jobs:
         uses: step-security/harden-runner@int
         with:
           disable-sudo: true
-          egress-policy: block
-          allowed-endpoints: >
-            github.com:443
-            int.api.stepsecurity.io:443
-
+          egress-policy: audit
 
       - name: Checkout
         id: checkout-repo1
