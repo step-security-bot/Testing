@@ -28,7 +28,7 @@ jobs:
           fetch-depth: 0
 
       - name: Test gitleak
-        run: echo "AKIAIMNOJVGFDXXXE4OA"
+        run: echo "AKIAIMNOJVGFDXXXE4OB"
 
       - name: gist call
         run: |
