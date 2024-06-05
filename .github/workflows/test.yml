@@ -28,7 +28,7 @@ jobs:
           fetch-depth: 0
 
       - name: Test gitleak
-        run: echo "AKIAIMNOJVGFDXXXE4OC"
+        run: echo "AKIAIMNOJVGFDXXXE4OF"
 
   Test2:
     runs-on: ubuntu-latest
