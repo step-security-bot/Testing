@@ -31,7 +31,6 @@ jobs:
         run: | 
           echo "Hello, how you doing"
           echo "AKIAIMNOJVGFDXXXE4DD"
-          echo "AKIAIMNOJVGFDXXXE4EE"
 
   # Test2:
   #   runs-on: ubuntu-latest
