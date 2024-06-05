@@ -28,28 +28,22 @@ jobs:
           fetch-depth: 0
 
       - name: Test gitleak
-        run: echo "AKIAIMNOJVGFDXXXE4OC"
+        run: echo "AKIAIMNOJVGFDXXXE4OP"
 
-  # Test2:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Harden Runner
-  #       uses: step-security/harden-runner@int
-  #       with:
-  #         disable-sudo: true
-  #         egress-policy: audit
+  Test2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        id: checkout-repo1
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-  #     - name: Checkout
-  #       id: checkout-repo1
-  #       uses: actions/checkout@v3
-  #       with:
-  #         fetch-depth: 0
-
-  #     - name: Test gitleak
-  #       run: | 
-  #         echo "Hello, how you doing"
-  #         echo "AKIAIMNOJVGFDXXXE4OD"
-  #         echo "AKIAIMNOJVGFDXXXE4OE"
+      - name: Test gitleak
+        run: | 
+          echo "Hello, how you doing"
+          echo "AKIAIMNOJVGFDXXXE4OQ"
+          echo "AKIAIMNOJVGFDXXXE4OR"
 
   #     - name: gist call
   #       run: |
