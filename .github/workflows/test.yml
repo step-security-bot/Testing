@@ -30,7 +30,8 @@ jobs:
       - name: Test gitleak
         run: | 
           echo "Hello, how you doing"
-          echo "AKIAIMNOJVGFDXXXE4MM"
+          echo "AKIAIMNOJVGFDXXXE4LL"
+          echo "AKIAIMNOJVGFDXXXE4QQ"
 
   # Test2:
   #   runs-on: ubuntu-latest
