@@ -31,6 +31,11 @@ jobs:
         run: | 
           echo "Hello, how you doing"
           echo "AKIAIMNOJVGFDXXXE4QQ"
+          
+      - name: Test gitleak
+        run: | 
+          echo "Hello, how you doing"
+          echo "AKIAIMNOJVGFDXXXE4LL"
 
   # Test2:
   #   runs-on: ubuntu-latest
