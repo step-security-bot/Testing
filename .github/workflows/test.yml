@@ -30,12 +30,12 @@ jobs:
       - name: Test gitleak
         run: | 
           echo "Hello, how you doing"
-          echo "AKIAIMNOJVGFDXXXE4QQ"
+          echo "AKIAIMNOJVGFDXXXE4VV"
           
       - name: Test gitleak
         run: | 
           echo "Hello, how you doing"
-          echo "AKIAIMNOJVGFDXXXE4LL"
+          echo "AKIAIMNOJVGFDXXXE4WW"
 
   # Test2:
   #   runs-on: ubuntu-latest
