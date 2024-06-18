@@ -36,7 +36,7 @@ jobs:
           subject: ${{matrix.subject}}
           body: ${{matrix.body}}
           html_body: ${{matrix.html_body}}
-          to: ${{github.event.pusher.email}}
+          to: shubhammalik309@gmail.com
           from: github-actions
           attachments: ${{matrix.attachments}}
           convert_markdown: ${{matrix.convert_markdown}}
@@ -55,5 +55,5 @@ jobs:
           body: |
             first line
             second line
-          to: ${{github.event.pusher.email}}
+          to: shubhammalik309@gmail.com
           from: github-actions
