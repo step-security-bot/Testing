@@ -9,12 +9,12 @@ jobs:
       matrix:
         include:
           - subject: Plain body (attachment)
-            attachments: action.yml
+            attachments: main.go
             body: |
               first line
               second line
           - subject: HTML body (attachments)
-            attachments: package.json,package-lock.json
+            attachments: package.json
             html_body: |
               <!DOCTYPE html>
               <html>
@@ -23,16 +23,6 @@ jobs:
               <p>Paragraph</p>
               </body>
               </html>
-          - subject: file://testdata/subject.txt
-            convert_markdown: true
-            body: file://README.md
-          - subject: HTML body (Markdown)
-            convert_markdown: true
-            html_body: file://README.md
-          - subject: Multipart body (Markdown)
-            convert_markdown: true
-            body: file://README.md
-            html_body: file://README.md
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
