@@ -27,7 +27,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Send mail
-        uses: ./
+        uses: step-security/action-send-mail@release
         with:
           server_address: ${{secrets.ADDRESS}}
           server_port: 465
@@ -48,7 +48,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Send mail
-        uses: ./
+        uses: step-security/action-send-mail@release
         with:
           connection_url: smtp+starttls://${{secrets.USERNAME}}:${{secrets.PASSWORD}}@${{secrets.ADDRESS}}/
           subject: Plain body with connection_url
