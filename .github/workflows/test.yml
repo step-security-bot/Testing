@@ -30,7 +30,7 @@ jobs:
       - name: Test gitleak
         run: | 
           echo "Hello, how you doing"
-          echo "12345678-1234-1234-1234-1234567890ab"
+          echo 8dyfuiRyq=vVc3RRr_edRk-fK__JItpZ
           
       # - name: Test gitleak
       #   run: | 
