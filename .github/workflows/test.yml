@@ -27,15 +27,15 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - name: Test gitleak
-        run: | 
-          echo "Hello, how you doing"
-          echo "cafebabe:deadbeef"
-          
       # - name: Test gitleak
       #   run: | 
       #     echo "Hello, how you doing"
-      #     echo "AKIAIMNOJVGFDXXXE4NK"
+      #     echo "cafebabe:deadbeef"
+          
+      - name: Test gitleak
+        run: | 
+          echo "Hello, how you doing"
+          echo "AKIAIMNOJVGFDXXXE4NK"
 
   # Test2:
   #   runs-on: ubuntu-latest
