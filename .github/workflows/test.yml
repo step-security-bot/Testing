@@ -42,10 +42,10 @@ jobs:
           echo "Hello, how you doing"
           echo "asana1234567890abcdefghijklmnopqrstuv"
           
-      - name: Test gitleak(atlasian)
+      - name: Test gitleak(cloudfare)
         run: | 
           echo "Hello, how you doing"
-          echo "atlassian1234567890abcdefghijkl"
+          echo "cloudflare = c2547eb745079dac9320b638f5e225cf483cc5cfdda41"
           
           
       # - name: Test gitleak
