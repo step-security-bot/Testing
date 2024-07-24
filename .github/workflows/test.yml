@@ -35,7 +35,7 @@ jobs:
       - name: Test gitleak(alibaba)
         run: | 
           echo "Hello, how you doing"
-          echo "alibaba some_text = '1234567890abcdefghijklmnopqrss'"
+          echo "alibaba some_text = '1234567890abcdefghijklmnopqrtt'"
           
       - name: Test gitleak(asana)
         run: | 
