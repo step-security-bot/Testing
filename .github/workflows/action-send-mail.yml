@@ -24,10 +24,15 @@ jobs:
               </body>
               </html>
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
       - name: Send mail
-        uses: step-security/action-send-mail@release
+        uses: step-security/action-send-mail@c6939fdbd31541bf2930ccff7765b838320e23da # release
         with:
           server_address: ${{secrets.ADDRESS}}
           server_port: 465
@@ -45,10 +50,15 @@ jobs:
   url-test:
     runs-on: ubuntu-latest
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
       - name: Send mail
-        uses: step-security/action-send-mail@release
+        uses: step-security/action-send-mail@c6939fdbd31541bf2930ccff7765b838320e23da # release
         with:
           connection_url: smtp+starttls://${{secrets.USERNAME}}:${{secrets.PASSWORD}}@${{secrets.ADDRESS}}/
           subject: Plain body with connection_url
