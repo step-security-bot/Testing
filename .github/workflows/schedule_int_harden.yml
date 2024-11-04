@@ -1,0 +1,23 @@
+name: Int Harden Runner
+
+on:
+  schedule:
+    - cron: "0 9,21 * * *"  # Runs at 9 AM and 9 PM UTC every day
+  workflow_dispatch:  # Allows manual triggering of the workflow
+
+jobs:
+  harden-and-basic-tasks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Run Step Security Harden Runner
+        uses: step-security/harden-runner@int
+
+      - name: List Files in Repository
+        run: ls -al
+
+      - name: Make API Call with Curl
+        run: |
+          curl -X GET "https://httpbin.org/get" -H "Content-Type: application/json"
