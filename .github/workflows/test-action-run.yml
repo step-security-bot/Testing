@@ -1,0 +1,21 @@
+name: change string case action
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Change String Case
+        id: string
+        uses: step-security/change-string-case-action@main
+        with: 
+            string: "XyZzY"
+
+      - name: Print Lowercase String
+        run: echo "${{ steps.string.outputs.lowercase }}"
