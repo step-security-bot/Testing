@@ -18,8 +18,13 @@ jobs:
     if: ${{ github.event_name != 'issue_comment'}}
     runs-on: macos-latest
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
       - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.12.0
+        uses: styfle/cancel-workflow-action@01ce38bf961b4e243a6342cbade0dbc8ba3f0432 # 0.12.0
         with:
           access_token: '${{ secrets.GITHUB_TOKEN }}'
 
@@ -29,6 +34,11 @@ jobs:
       run_integration_tests: ${{ steps.should-run-step.outputs.should_run }}
       pr_number: ${{ steps.pr_number.outputs.number }}
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
       - name: Get PR number
         id: pr_number
         if: ${{ github.event_name == 'issue_comment'}}
@@ -36,7 +46,7 @@ jobs:
           PR_URL="${{ github.event.issue.pull_request.url }}"
           PR_NUMBER=${PR_URL##*/}
           echo "number=$PR_NUMBER" >> $GITHUB_OUTPUT
-      - uses: khan/pull-request-comment-trigger@master
+      - uses: khan/pull-request-comment-trigger@f8ab347574d77faad034de3bcc2565517187eb2b # master
         if: ${{ github.event_name == 'issue_comment'}}
         id: check_issue_comment
         with:
@@ -60,14 +70,19 @@ jobs:
     outputs:
       comment_id: ${{ steps.couc.outputs.comment-id }}
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
       - name: Get current time
-        uses: 1466587594/get-current-time@v2
+        uses: 1466587594/get-current-time@060cae3fbd32c181c6841788189a601ac8df8389 # v2.1.2
         id: current-time
         with:
           format: 'YYYY-MM-DD HH:mm:ss'
           utcOffset: "+00:00"
       - name: Create comment that tests were triggered
-        uses: peter-evans/create-or-update-comment@v3
+        uses: peter-evans/create-or-update-comment@23ff15729ef2fc348714a3bb66d2f655ca9066f2 # v3.1.0
         id: couc
         with:
           issue-number: ${{ needs.should_run_it.outputs.pr_number }}
@@ -94,7 +109,7 @@ jobs:
           # TODO: change to 'egress-policy: block' after auditing a number of runs and updating the allowed-endpoints option accordingly
 
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
 
       - name: Checkout Pull Request
         if: github.event_name == 'issue_comment'
@@ -103,7 +118,7 @@ jobs:
         run: |
           gh pr checkout ${{ needs.should_run_it.outputs.pr_number }}
 
-      - uses: actions/cache@v4
+      - uses: actions/cache@v4.2.0
         with:
           path: ~/.gradle/caches
           key: macos-gradle-${{ hashFiles('**/*.gradle*') }}
@@ -128,7 +143,7 @@ jobs:
         shell: bash
 
       - name: Gradle integration tests
-        uses: gradle/gradle-build-action@v2.11.1
+        uses: gradle/gradle-build-action@982da8e78c05368c70dac0351bb82647a9e9a5d2 # v2.11.1
         id: run-it
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -138,7 +153,7 @@ jobs:
 
       - name: Export Variables for FlankScripts
         if: ${{ always() }}
-        uses: UnlyEd/github-action-store-variable@v3.0.15
+        uses: UnlyEd/github-action-store-variable@fca85a566c290a8382989fdb537f716215a8d80c # v3.0.15
         with:
           variables: |
             ${{ runner.os }}=${{ job.status }}
@@ -149,15 +164,20 @@ jobs:
     runs-on: macos-latest
     if: always() && github.event_name != 'issue_comment'
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
       - name: Import variable
-        uses: UnlyEd/github-action-store-variable@v3.0.15
+        uses: UnlyEd/github-action-store-variable@fca85a566c290a8382989fdb537f716215a8d80c # v3.0.15
         with:
           delimiter: ','
           variables: |
             Windows,Windows-bs,macOS,macOS-bs,Linux,Linux-bs
 
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
       - name: Download flankScripts and add it to PATH
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -178,8 +198,13 @@ jobs:
     runs-on: macos-latest
     if: always() && github.event_name == 'issue_comment'
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
       - name: Import variable
-        uses: UnlyEd/github-action-store-variable@v3.0.15
+        uses: UnlyEd/github-action-store-variable@fca85a566c290a8382989fdb537f716215a8d80c # v3.0.15
         with:
           delimiter: ','
           variables: |
@@ -187,7 +212,7 @@ jobs:
 
       - name: Update comment on failure
         if: ${{ needs.run-it-full-suite.outputs.job_status == 'failure' }}
-        uses: peter-evans/create-or-update-comment@v3
+        uses: peter-evans/create-or-update-comment@23ff15729ef2fc348714a3bb66d2f655ca9066f2 # v3.1.0
         with:
           comment-id: ${{ needs.integration-tests-post-link.outputs.comment_id }}
           edit-mode: replace
@@ -201,7 +226,7 @@ jobs:
 
       - name: Update comment on success
         if: ${{ needs.run-it-full-suite.outputs.job_status == 'success' }}
-        uses: peter-evans/create-or-update-comment@v3
+        uses: peter-evans/create-or-update-comment@23ff15729ef2fc348714a3bb66d2f655ca9066f2 # v3.1.0
         with:
           comment-id: ${{ needs.integration-tests-post-link.outputs.comment_id }}
           edit-mode: replace
@@ -224,14 +249,14 @@ jobs:
           egress-policy: audit
           # TODO: change to 'egress-policy: block' after auditing a number of runs and updating the allowed-endpoints option accordingly
 
-      - uses: tibdex/github-app-token@v2
+      - uses: tibdex/github-app-token@3beb63f4bd073e61482598c45c71c1019b59b73a # v2.1.0
         id: generate-token
         with:
           app_id: ${{ secrets.FLANK_RELEASE_APP_ID }}
           private_key: ${{ secrets.FLANK_RELEASE_PRIVATE_KEY }}
 
       - name: Repository Dispatch
-        uses: peter-evans/repository-dispatch@v2
+        uses: peter-evans/repository-dispatch@bf47d102fdb849e755b0b0023ea3e81a44b6f570 # v2.1.2
         with:
           token: ${{ steps.generate-token.outputs.token }}
           event-type: integration-pointer
