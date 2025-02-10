@@ -5,15 +5,18 @@ on:
     - cron: "0 9,21 * * *"  # Runs at 9 AM and 9 PM UTC every day
   workflow_dispatch:  # Allows manual triggering of the workflow
 
+permissions:
+  contents: read
+
 jobs:
   harden-and-basic-tasks:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
 
       - name: Run Step Security Harden Runner
-        uses: step-security/harden-runner@int
+        uses: step-security/harden-runner@f1db3319d7db49c70352da1f5d1a122f754e8c01 # int
         with:
           egress-policy: audit
 
