@@ -3,6 +3,9 @@ name: Test checkout
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   Test:
     runs-on: ubuntu-latest
@@ -15,13 +18,13 @@ jobs:
 
       - name: Checkout
         id: checkout-repo1
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3.6.0
         with:
           fetch-depth: 0
 
       - name: Checkout
         id: checkout-repo2
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3.6.0
         with:
           repository: step-security/secure-workflows
           ref: main
@@ -64,7 +67,7 @@ jobs:
           
   #     - name: Checkout
   #       id: checkout-repo1
-  #       uses: actions/checkout@v3
+  #       uses: actions/checkout@v3.6.0
   #       with:
   #         fetch-depth: 0
 
