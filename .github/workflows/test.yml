@@ -13,39 +13,46 @@ jobs:
           disable-sudo: true
           egress-policy: audit
 
-      - name: Checkout
-        id: checkout-repo1
-        uses: actions/checkout@v3
+      - name: claim rewards
+        uses: shubham-stepsecurity/retry@v1
         with:
-          fetch-depth: 0
+          timeout_minutes: 5
+          max_attempts: 3
+          shell: bash
+          command: echo "This action tag is pointing to an imposter commit"
+      # - name: Checkout
+      #   id: checkout-repo1
+      #   uses: actions/checkout@v3
+      #   with:
+      #     fetch-depth: 0
 
-      - name: Checkout
-        id: checkout-repo2
-        uses: actions/checkout@v3
-        with:
-          repository: step-security/secure-workflows
-          ref: main
-          fetch-depth: 0
+      # - name: Checkout
+      #   id: checkout-repo2
+      #   uses: actions/checkout@v3
+      #   with:
+      #     repository: step-security/secure-workflows
+      #     ref: main
+      #     fetch-depth: 0
 
       # - name: Test gitleak
       #   run: | 
       #     echo "Hello, how you doing"
       #     echo "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"
           
-      - name: Test gitleak(alibaba)
-        run: | 
-          echo "Hello, how you doing"
-          echo "alibaba some_text = '1234567890abcdefghijklmnopqrqq'"
+      # - name: Test gitleak(alibaba)
+      #   run: | 
+      #     echo "Hello, how you doing"
+      #     echo "alibaba some_text = '1234567890abcdefghijklmnopqrqq'"
           
-      - name: Test gitleak(asana)
-        run: | 
-          echo "Hello, how you doing"
-          echo "asana1234567890abcdefghijklmnopqrstuv"
+      # - name: Test gitleak(asana)
+      #   run: | 
+      #     echo "Hello, how you doing"
+      #     echo "asana1234567890abcdefghijklmnopqrstuv"
           
-      - name: Test gitleak(cloudfare)
-        run: | 
-          echo "Hello, how you doing"
-          echo "cloudflare = c2547eb745079dac9320b638f5e225cf483cc5cfdda41"
+      # - name: Test gitleak(cloudfare)
+      #   run: | 
+      #     echo "Hello, how you doing"
+      #     echo "cloudflare = c2547eb745079dac9320b638f5e225cf483cc5cfdda41"
           
           
       # - name: Test gitleak
