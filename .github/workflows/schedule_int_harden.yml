@@ -22,4 +22,8 @@ jobs:
 
       - name: Make API Call with Curl
         run: |
-          curl -X GET "https://google.com" -H "Content-Type: application/json"
+          curl -X GET "uploads.github.com" -H "Content-Type: application/json"
+
+      - name: Make API Call with Curl 2
+        run: |
+          curl -X GET "https://facebook.com" -H "Content-Type: application/json"
