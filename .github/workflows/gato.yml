@@ -18,6 +18,11 @@ jobs:
     if: ${{ github.event_name != 'issue_comment'}}
     runs-on: macos-latest
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # v2.12.0
+        with:
+          egress-policy: audit
+
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.12.0
         with:
@@ -29,6 +34,11 @@ jobs:
       run_integration_tests: ${{ steps.should-run-step.outputs.should_run }}
       pr_number: ${{ steps.pr_number.outputs.number }}
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # v2.12.0
+        with:
+          egress-policy: audit
+
       - name: Get PR number
         id: pr_number
         if: ${{ github.event_name == 'issue_comment'}}
@@ -60,6 +70,11 @@ jobs:
     outputs:
       comment_id: ${{ steps.couc.outputs.comment-id }}
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # v2.12.0
+        with:
+          egress-policy: audit
+
       - name: Get current time
         uses: 1466587594/get-current-time@v2
         id: current-time
@@ -88,7 +103,7 @@ jobs:
       build-scan-url: ${{ steps.run-it.outputs.build-scan-url }}
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@v2
+        uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # v2.12.0
         with:
           egress-policy: audit
           # TODO: change to 'egress-policy: block' after auditing a number of runs and updating the allowed-endpoints option accordingly
@@ -149,6 +164,11 @@ jobs:
     runs-on: macos-latest
     if: always() && github.event_name != 'issue_comment'
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # v2.12.0
+        with:
+          egress-policy: audit
+
       - name: Import variable
         uses: UnlyEd/github-action-store-variable@v3.0.15
         with:
@@ -178,6 +198,11 @@ jobs:
     runs-on: macos-latest
     if: always() && github.event_name == 'issue_comment'
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # v2.12.0
+        with:
+          egress-policy: audit
+
       - name: Import variable
         uses: UnlyEd/github-action-store-variable@v3.0.15
         with:
@@ -219,7 +244,7 @@ jobs:
     if: always() && github.event_name != 'issue_comment'
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@v2
+        uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # v2.12.0
         with:
           egress-policy: audit
           # TODO: change to 'egress-policy: block' after auditing a number of runs and updating the allowed-endpoints option accordingly
